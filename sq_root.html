@@ -1,0 +1,30 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+      <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    </head>
+
+  <body>
+    <h1>牛頓法開根號</h1>
+    <div id="plot"></div>
+    <py-config type="toml">
+
+    </py-config>
+    
+    <input type="number" id="n"/>
+    <button id="submit-button" type="button" py-click="compute()">Compute</button>
+    <div id="output"></div>
+
+    <py-script>
+      def compute():
+          from pyscript import Element
+          c = int(Element('n').value)
+          # print(f'sqrt({c})')
+          Element('output').write(f'sqrt({c})')
+          x = c
+          for i in range(1,10):
+            x = x - (x*x-c)/(2*x)
+            # print(f'x{i}={x}')
+            Element('output').write(f'x{i}={x:.6f}\n',append=True)
+    </py-script>
+</html>
